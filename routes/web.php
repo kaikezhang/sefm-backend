@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Http\Request;
 use App\Events\TeacheBroadcastNewData;
+use App\Events\SpeedChange;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +20,12 @@ Route::get('/', function () {
 Route::post('/broadcast/{classroom}', function ($classroom, Request $request){
     $data = $request->input('data');
     event(new TeacheBroadcastNewData($classroom, $data));
+    return response('OK');
+});
+
+
+Route::post('/broadcast/{classroom}/speed', function ($classroom, Request $request){
+    $speed = $request->input('speed');
+    event(new SpeedChange($classroom, $speed));
     return response('OK');
 });
