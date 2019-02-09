@@ -13,6 +13,10 @@ use App\Events\SpeedChange;
 |
 */
 
+Route::get('/sefm', function () {
+    return "Welcome to SEFM APP!";
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
