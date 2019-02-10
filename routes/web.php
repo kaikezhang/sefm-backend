@@ -13,12 +13,9 @@ use App\Events\SpeedChange;
 |
 */
 
-Route::get('/sefm', function () {
-    return "Welcome to SEFM APP!";
-});
-
 Route::get('/', function () {
     return view('welcome');
+    // return redirect('/sefm');
 });
 
 Route::post('/broadcast/{classroom}', function ($classroom, Request $request){
@@ -43,4 +40,10 @@ Route::namespace('Auth')->group(function () {
     Route::post('/password/reset', 'ResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     Route::get('/password/resetsuccess', 'ResetPasswordSuccessController@index')->name('password.reset.success');
+
+    Route::get('/sefm', function () {
+	    // return "Welcome to SEFM APP!";
+	    return File::get(public_path() . '/app/index.html');
+	    // return view('app.spa');
+	})->middleware('auth');
 });
